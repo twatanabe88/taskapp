@@ -11,6 +11,7 @@ import RealmSwift
 
 class Task: Object {
 
+    
     class Task: Object {
         // 管理用 ID。プライマリーキー
         dynamic var id = 0
