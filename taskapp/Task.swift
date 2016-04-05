@@ -9,8 +9,6 @@
 import UIKit
 import RealmSwift
 
-class Task: Object {
-
     
     class Task: Object {
         // 管理用 ID。プライマリーキー
@@ -18,6 +16,12 @@ class Task: Object {
         
         // タイトル
         dynamic var title = ""
+        
+        //カテゴリ
+        dynamic var category:String = ""
+        
+    
+        
         
         // 内容
         dynamic var contents = ""
@@ -31,7 +35,6 @@ class Task: Object {
         override static func primaryKey() -> String? {
             return "id"
         }
-    }
     
 
     /*
