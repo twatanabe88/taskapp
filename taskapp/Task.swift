@@ -20,9 +20,6 @@ import RealmSwift
         //カテゴリ
         dynamic var category:String = ""
         
-    
-        
-        
         // 内容
         dynamic var contents = ""
         

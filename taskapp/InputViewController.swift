@@ -14,7 +14,6 @@ class InputViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
-
     @IBOutlet weak var categoryTextField: UITextField!
     
     

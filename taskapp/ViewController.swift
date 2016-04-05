@@ -32,11 +32,7 @@ class ViewController: UIViewController,UISearchBarDelegate,UITableViewDelegate, 
     // データの数（＝セルの数）を返すメソッド
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
-        
-        
-        
-        
-    }
+        }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
     
