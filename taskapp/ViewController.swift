@@ -11,19 +11,21 @@ import RealmSwift
 
 class ViewController: UIViewController,UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource{
 
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    let realm = try! Realm()
-    var taskArray = try! Realm().objects(Task).sorted("date", ascending: false)
     
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    var searchResults = [""]
+    
+    let realm = try! Realm()
+    let taskArray = try! Realm().objects(Task).sorted("date", ascending: false)
+    var searchArray:Results<Task>? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        searchBar.delegate = self
-        searchBar.showsCancelButton = true
+     
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -31,38 +33,45 @@ class ViewController: UIViewController,UISearchBarDelegate,UITableViewDelegate, 
     // MARK: UITableViewDataSourceプロトコルのメソッド
     // データの数（＝セルの数）を返すメソッド
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchArray != nil {
+            return searchArray!.count
+            
+        }
+        else{
         return taskArray.count
         }
+    }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+ 
     
-    taskArray = realm.objects(Task).filter(" category = \(searchText)")
-
+    func searchBarTextDidEndEditing(searchBar: UISearchBar){
+        searchArray = realm.objects(Task).filter(" category = \(searchBar.text)")
     }
     
     // 各セルの内容を返すメソッド
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // 再利用可能な cell を得る
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         
-        // Cellに値を設定する.
-        let task = taskArray[indexPath.row]
-        cell.textLabel?.text = task.title
+        // 通常のTableView
+        let task: Task
+        if let searchArray = self.searchArray {
+            task = searchArray[indexPath.row]
+        }
+        else {
+            task = taskArray[indexPath.row]
+        }
         
+        cell.textLabel?.text = task.title
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         
         let dateString:String = formatter.stringFromDate(task.date)
         cell.detailTextLabel?.text = dateString
         
-        
         return cell
     }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.text = ""
-    }
-
     
     // MARK: UITableViewDelegateプロトコルのメソッド
     // 各セルを選択した時に実行されるメソッド

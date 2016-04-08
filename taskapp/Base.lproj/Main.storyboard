@@ -117,12 +117,12 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wVK-Kb-zSx">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="Y6Q-YY-A2B">
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="Udx-WC-YL8">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
-                                        <outlet property="delegate" destination="BYZ-38-t0r" id="H4i-9X-P29"/>
+                                        <outlet property="delegate" destination="BYZ-38-t0r" id="ND6-9U-Qr8"/>
                                     </connections>
                                 </searchBar>
                                 <prototypes>
@@ -173,22 +173,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="Y6Q-YY-A2B" id="AfM-e0-DGn"/>
-                        <outlet property="searchDisplayController" destination="087-LQ-79n" id="XbE-nn-zaf"/>
+                        <outlet property="searchBar" destination="Udx-WC-YL8" id="gbb-o0-qEW"/>
                         <outlet property="tableView" destination="wVK-Kb-zSx" id="p6b-3c-1Zx"/>
                         <segue destination="2ae-5K-pqB" kind="show" identifier="cellSegue" id="hUZ-gr-mXx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="087-LQ-79n">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="6dA-2g-uH3"/>
-                        <outlet property="searchBar" destination="Y6Q-YY-A2B" id="DYw-ev-VqX"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="GMc-oW-NBP"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="72y-lF-AcV"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="vbL-jR-SSC"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1201" y="323"/>
         </scene>
