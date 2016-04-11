@@ -17,15 +17,18 @@ class ViewController: UIViewController,UISearchBarDelegate,UITableViewDelegate, 
     @IBOutlet weak var tableView: UITableView!
     var searchResults = [""]
     
+    
     let realm = try! Realm()
     let taskArray = try! Realm().objects(Task).sorted("date", ascending: false)
     var searchArray:Results<Task>? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    searchBar.resignFirstResponder()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -42,10 +45,15 @@ class ViewController: UIViewController,UISearchBarDelegate,UITableViewDelegate, 
         }
     }
     
- 
+
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar){
-        searchArray = realm.objects(Task).filter(" category = \(searchBar.text)")
+        print("category = '\(searchBar.text!)'")
+       
+        searchArray = realm.objects(Task).filter("category = '\(searchBar.text!)'")
+        tableView.reloadData()
+        print(searchArray!.count)
+        
     }
     
     // 各セルの内容を返すメソッド
